@@ -4,11 +4,10 @@
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  padding-top: 4rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -41,8 +40,8 @@
 
 .title {
   margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  line-height: 2.0;
+  font-size: 2rem;
 }
 
 .input {
@@ -57,9 +56,7 @@
   width: 100%;
 }
 
-.btn:hover,
-.btn:focus,
-.btn:active {
+.btn:hover {
   color: #0070f3;
   border-color: #0070f3;
 }
