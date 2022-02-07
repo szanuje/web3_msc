@@ -45,6 +45,26 @@
   font-size: 4rem;
 }
 
+.input {
+  font-size: x-large;
+  width: 100%;
+  text-align: center;
+}
+
+.btn {
+  background-color: #4b00ff17;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.center
 .title,
 .description {
   text-align: center;
@@ -66,7 +86,7 @@
 }
 
 .grid {
-  display: flex;
+  display: inline-grid;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -74,9 +94,9 @@
 }
 
 .card {
-  margin: 1rem;
+  margin: 10px;
   padding: 1.5rem;
-  text-align: left;
+  text-align: center;
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
@@ -98,8 +118,8 @@
 }
 
 .card p {
-  margin: 0;
-  font-size: 1.25rem;
+  margin: 1.0rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
