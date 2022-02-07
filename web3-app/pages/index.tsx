@@ -1,8 +1,25 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import { ethers } from "ethers";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [walletAddress, setWalletAddress] = useState("");
+    const walletConnect = async () => {
+        if (!window.ethereum)
+            throw new Error("No crypto wallet found. Please install it.");
+
+        await window.ethereum.send("eth_requestAccounts");
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const addr = await signer.getAddress();
+        setWalletAddress(`Wallet connected: ${addr.slice(0, 5)}...${addr.slice(-5, -1)}`);
+        setWalletConnected(true);
+        console.log(addr);
+    };
+
     return (
         <div className={styles.container}>
             <Head>
@@ -17,8 +34,8 @@ const Home: NextPage = () => {
             <main className={styles.main}>
                 <h1 className={styles.title}>Smart Contract interactive app</h1>
 
-                <p className={(styles.description, styles.card)}>
-                    Please connect your wallet
+                <p className={(styles.description, styles.card)} onClick={walletConnect}>
+                    {walletConnected ? <a className={styles.address}>{walletAddress}</a> : "Please connect your wallet"}
                 </p>
 
                 <div className={styles.grid}>
@@ -32,7 +49,10 @@ const Home: NextPage = () => {
 
                     <div className={styles.card}>
                         <h2>Get assets amount</h2>
-                        <input read-only="true" className={styles.input}></input>
+                        <input
+                            read-only="true"
+                            className={styles.input}
+                        ></input>
                         <button className={styles.btn}>
                             <p>Get assets</p>
                         </button>

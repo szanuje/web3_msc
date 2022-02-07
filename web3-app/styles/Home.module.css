@@ -44,6 +44,10 @@
   font-size: 2rem;
 }
 
+.address {
+  color: #0070f3;
+}
+
 .input {
   font-size: x-large;
   width: 100%;
@@ -51,7 +55,7 @@
 }
 
 .btn {
-  background-color: #4b00ff17;
+  background-color: #0037ff38;
   margin-top: 20px;
   width: 100%;
 }
