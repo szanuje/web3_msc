@@ -8,7 +8,7 @@ const RINKEBY_PRIVATE_KEY = "";
 module.exports = {
   solidity: "0.8.10",
   networks: {
-    ropsten: {
+    rinkeby: {
       url: `https://eth-rinkeby.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
       accounts: [`${RINKEBY_PRIVATE_KEY}`],
     },
