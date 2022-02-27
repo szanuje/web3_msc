@@ -1,7 +1,8 @@
 require("@nomiclabs/hardhat-waffle");
 
 const ALCHEMY_API_KEY = "";
-const RINKEBY_PRIVATE_KEY = "";
+const RINKEBY_PRIVATE_KEY =
+  "0000000000000000000000000000000000000000000000000000000000000000";
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
