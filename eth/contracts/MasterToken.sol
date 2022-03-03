@@ -32,8 +32,8 @@ interface IERC20 {
 }
 
 contract MasterToken is IERC20 {
-    string public constant name = "Master";
-    string public constant symbol = "MSC";
+    string public constant name = "Master Token";
+    string public constant symbol = "MTKN";
     uint8 public constant decimals = 18;
 
     mapping(address => uint256) balances;
