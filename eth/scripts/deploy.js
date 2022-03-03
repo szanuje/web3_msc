@@ -9,7 +9,8 @@ async function main() {
   const storage = await ethStorage.deploy();
 
   console.log("Contract address:", storage.address);
-  console.log("Token address:", await storage.token());
+  console.log("Master Token address:", await storage.mtkn());
+  console.log("MasterNFT address:", await storage.mnft());
 }
 
 main()
