@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
+
 interface IERC20 {
     function totalSupply() external view returns (uint256);
 
@@ -31,7 +33,7 @@ interface IERC20 {
     );
 }
 
-contract MasterToken is IERC20 {
+contract MasterToken is IERC20, Ownable {
     string public constant name = "Master Token";
     string public constant symbol = "MTKN";
     uint8 public constant decimals = 18;
@@ -106,7 +108,7 @@ contract MasterToken is IERC20 {
         return true;
     }
 
-    function mint(uint256 quantity) public payable {
+    function mint(uint256 quantity) public payable onlyOwner {
         balances[msg.sender] += quantity;
     }
 }
