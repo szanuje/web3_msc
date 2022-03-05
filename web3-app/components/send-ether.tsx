@@ -4,16 +4,15 @@ import { useState, useEffect } from "react";
 import { getETHStorageContract } from "../lib/utils";
 
 export function SendEtherComp() {
-  const { status, ethereum } = useMetaMask();
+  const { status, ethereum, account } = useMetaMask();
   const [amount, setAmount] = useState("");
   const [tx, setTx] = useState(null);
   const [balance, setBalance] = useState("0");
 
   useEffect(() => {
     async function getBal() {
-      const balance = await getBalance(ethereum);
+      const balance = await getBalance(ethereum, account);
       const formattedBalance = ethers.utils.formatEther(balance);
-      console.log(balance.toString());
       setBalance(formattedBalance);
     }
     if (status === "connected") {
@@ -74,8 +73,8 @@ const deposit = (amount: string, ethereum: any): Promise<any> => {
   return signer.deposit(options);
 };
 
-const getBalance = (ethereum: any): Promise<any> => {
+const getBalance = (ethereum: any, account: string | null): Promise<any> => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const contract = getETHStorageContract(provider);
-  return contract.depositBalance();
+  return contract.depositBalance(account);
 };

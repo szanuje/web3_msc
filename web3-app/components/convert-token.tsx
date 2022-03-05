@@ -58,7 +58,6 @@ export function ConvertTokenComp() {
 }
 
 const convert = (ethereum: any): Promise<any> => {
-  console.log("wtf");
   const provider = new ethers.providers.Web3Provider(ethereum);
   const contract = getETHStorageContract(provider);
   const signer = contract.connect(provider.getSigner());

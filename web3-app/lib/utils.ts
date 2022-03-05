@@ -5,8 +5,7 @@ import masterTokenAbi from "../abi/MasterToken.json";
 export const getETHStorageContract = (
   provider: ethers.providers.Web3Provider
 ) => {
-  const contractAddress = "0x265565bcad7834902101db7b495f1655d1512665";
-  console.log(contractAddress);
+  const contractAddress = "0x02B3fFC2158aF2b8406361f46cBCbA4Eabc51977";
   if (!contractAddress) throw Error("Can't parse contract address.");
   return new ethers.Contract(contractAddress, ethStorageAbi, provider);
 };
@@ -14,8 +13,7 @@ export const getETHStorageContract = (
 export const getMasterTokenContract = (
   provider: ethers.providers.Web3Provider
 ) => {
-  const contractAddress = "0x86521613e20001499aeEb4A44Dfd43bC14Df5CE9";
-  console.log(contractAddress);
+  const contractAddress = "0x2AcED6034De25340ff229DF78871a648A42Cb87D";
   if (!contractAddress) throw Error("Can't parse contract address.");
   return new ethers.Contract(contractAddress, masterTokenAbi, provider);
 };
