@@ -1,7 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
-  padding: 0;
-  margin: 0;
+  max-width: max-content;
+  margin: auto;
+  padding-top: 20px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -13,4 +18,28 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: rgb(61, 61, 61);
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  font-size: smaller;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -20px;
+  left: -50%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+button:hover .tooltiptext {
+  visibility: visible;
+  transition-delay: 0.3s;
 }
