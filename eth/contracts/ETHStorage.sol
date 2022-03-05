@@ -29,7 +29,7 @@ contract ETHStorage {
         mnft = new MasterNFT();
     }
 
-    function buyMaster() public payable {
+    function buyMaster() public {
         uint256 balance = deposits[msg.sender];
         require(balance > 0, "You must deposit some Ether");
         uint256 withdrawAmount = 3000 * balance;
@@ -40,14 +40,12 @@ contract ETHStorage {
         }
 
         mtkn.transfer(msg.sender, withdrawAmount);
+        deposits[msg.sender] = 0;
+
         emit Bought(withdrawAmount);
     }
 
-    function mintMasterNFT(string memory tokenUri)
-        public
-        payable
-        returns (uint256)
-    {
+    function mintMasterNFT(string memory tokenUri) public returns (uint256) {
         mtkn.transferFrom(
             msg.sender,
             address(this),
@@ -64,8 +62,8 @@ contract ETHStorage {
         deposits[msg.sender] += msg.value;
     }
 
-    function depositBalance() public view returns (uint256) {
-        return deposits[msg.sender];
+    function depositBalance(address account) public view returns (uint256) {
+        return deposits[account];
     }
 
     receive() external payable {}
