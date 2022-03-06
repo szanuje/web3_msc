@@ -38,7 +38,7 @@ export function ConvertTokenComp() {
               convert(ethereum, account)
                 .then((id) => setTx(id.hash))
                 .catch((err) => {
-                  console.log(err);
+                  console.error(err);
                   setErr(err);
                 });
             }}

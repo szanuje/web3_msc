@@ -83,7 +83,6 @@ export const mint = async (
     throw new Error("Master Token balance is too low");
 
   const allowance = await mtknContract.allowance(account, ethStorageAddress);
-  console.log(allowance);
 
   if (allowance.lt(mintPrice)) {
     const signer = mtknContract.connect(provider.getSigner());

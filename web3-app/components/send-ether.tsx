@@ -44,7 +44,7 @@ export function SendEtherComp() {
               deposit(amount, ethereum)
                 .then((id) => setTx(id.hash))
                 .catch((err) => {
-                  console.log(err);
+                  console.error(err);
                   setErr(err);
                 });
             }}

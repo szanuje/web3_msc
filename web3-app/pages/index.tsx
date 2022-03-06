@@ -5,6 +5,7 @@ import { MetaMaskProvider } from "metamask-react";
 import { ConnectWalletComp } from "../components/connect-wallet";
 import { MintNftComp } from "../components/mint-nft";
 import { ConvertTokenComp } from "../components/convert-token";
+import { NFTLink } from "../components/nft-link";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
           <SendEtherComp></SendEtherComp>
           <ConvertTokenComp></ConvertTokenComp>
           <MintNftComp></MintNftComp>
+          <NFTLink></NFTLink>
         </MetaMaskProvider>
       </div>
     </div>
