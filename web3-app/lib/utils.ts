@@ -2,8 +2,8 @@ import { ethers } from "ethers";
 import ethStorageAbi from "../abi/ETHStorage.json";
 import masterTokenAbi from "../abi/MasterToken.json";
 
-const ethStorageAddress = "0x02B3fFC2158aF2b8406361f46cBCbA4Eabc51977";
-const mtknAddress = "0x2AcED6034De25340ff229DF78871a648A42Cb87D";
+const ethStorageAddress = "0xCfCFA75475f2462D28dB2964Db8ac2F375230038";
+const mtknAddress = "0xf17E09B60f278933f498c03a7B3fdFA0eB4C0FDb";
 
 export const getETHStorageContract = (
   provider: ethers.providers.Web3Provider
@@ -83,11 +83,12 @@ export const mint = async (
     throw new Error("Master Token balance is too low");
 
   const allowance = await mtknContract.allowance(account, ethStorageAddress);
+  console.log(allowance);
 
   if (allowance.lt(mintPrice)) {
     const signer = mtknContract.connect(provider.getSigner());
     const tx = await signer.approve(
-      mtknAddress,
+      ethStorageAddress,
       ethers.utils.parseEther("1000")
     );
     throw new Error(
@@ -96,5 +97,7 @@ export const mint = async (
   }
 
   const contract = getETHStorageContract(provider);
-  return await contract.mintNFT(url);
+  const signer = contract.connect(provider.getSigner());
+
+  return await signer.mintMasterNFT(url);
 };
