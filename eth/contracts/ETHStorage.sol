@@ -3,6 +3,7 @@ pragma solidity ^0.8.10;
 
 import {MasterToken} from "./MasterToken.sol";
 import {MasterNFT} from "./MasterNFT.sol";
+import {ChainlinkPriceOracle} from "./Oracle.sol";
 
 /**
  * @title ETHStorage
@@ -17,6 +18,7 @@ contract ETHStorage {
 
     mapping(address => uint256) private deposits;
 
+    ChainlinkPriceOracle private oracle;
     MasterToken public mtkn;
     MasterNFT public mnft;
 
@@ -27,12 +29,13 @@ contract ETHStorage {
     constructor() {
         mtkn = new MasterToken(MINT_QUANTITY);
         mnft = new MasterNFT();
+        oracle = new ChainlinkPriceOracle();
     }
 
     function buyMaster() public {
         uint256 balance = deposits[msg.sender];
         require(balance > 0, "You must deposit some Ether");
-        uint256 withdrawAmount = 3000 * balance;
+        uint256 withdrawAmount = uint256(oracle.getLatestPrice()) * balance;
         uint256 supplyBalance = mtkn.balanceOf(address(this));
 
         if (supplyBalance < withdrawAmount) {
