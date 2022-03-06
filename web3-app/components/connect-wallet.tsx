@@ -5,7 +5,7 @@ export function ConnectWalletComp() {
 
   if (status === "initializing")
     return (
-      <div className="min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+      <div className="max-w-[850px] min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
         <div className="mr-auto space-y-0.5">
           <p className="font-mono text-lg font-bold text-gray-800">
             Synchronisation with MetaMask ongoing...
@@ -16,7 +16,7 @@ export function ConnectWalletComp() {
 
   if (status === "unavailable")
     return (
-      <div className="min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+      <div className="max-w-[850px] min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
         <div className="mr-auto space-y-0.5">
           <p className="font-mono text-lg font-bold text-gray-800">
             Metamask wallet is not available. Please install it.
@@ -27,7 +27,7 @@ export function ConnectWalletComp() {
 
   if (status === "notConnected")
     return (
-      <div className="min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+      <div className="max-w-[850px] min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
         <div className="mr-auto space-y-0.5">
           <p className="font-mono text-lg font-bold text-gray-800">
             Wallet is not connected.
@@ -44,7 +44,7 @@ export function ConnectWalletComp() {
 
   if (status === "connecting")
     return (
-      <div className="min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+      <div className="max-w-[850px] min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
         <div className="mr-auto space-y-0.5">
           <p className="font-mono text-lg font-bold text-gray-800">
             Connecting...
@@ -58,7 +58,7 @@ export function ConnectWalletComp() {
 
   if (status === "connected")
     return (
-      <div className="min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+      <div className="max-w-[850px] min-w-[700px] flex items-center justify-between rounded-md border border-gray-300 bg-white p-6 shadow-sm">
         <div className="mr-auto space-y-0.5">
           <p className="font-mono text-lg font-bold text-gray-800">
             Connected: {account}
