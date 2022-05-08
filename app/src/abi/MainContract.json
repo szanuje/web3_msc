@@ -1,6 +1,22 @@
 [
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "mtknAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "mnftAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "swapAddress",
+        "type": "address"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -10,21 +26,14 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "Bought",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
         "name": "id",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "uri",
+        "type": "string"
       }
     ],
     "name": "Minted",
@@ -36,45 +45,18 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "amount",
+        "name": "amountIn",
         "type": "uint256"
-      }
-    ],
-    "name": "Withdrawn",
-    "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "buyMaster",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "deposit",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
+      },
       {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "depositBalance",
-    "outputs": [
-      {
+        "indexed": false,
         "internalType": "uint256",
-        "name": "",
+        "name": "amountOut",
         "type": "uint256"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
+    "name": "Swapped",
+    "type": "event"
   },
   {
     "inputs": [
@@ -123,12 +105,19 @@
   },
   {
     "inputs": [],
-    "name": "tokenBalance",
+    "name": "swapExactETHForToken",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "swapper",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "contract Swap",
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
     "stateMutability": "view",

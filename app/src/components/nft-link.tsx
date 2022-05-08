@@ -1,9 +1,5 @@
-import { useMetaMask } from "metamask-react";
-
 export function NFTLink() {
-  const { status, account } = useMetaMask();
-
-  const nftUrl = `https://testnets.opensea.io/${account}`;
+  const nftUrl = `https://testnets.opensea.io/`;
 
   return status === "connected" ? (
     <div className="bg-gray-200 rounded-md space-y-1.5">
