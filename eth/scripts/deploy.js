@@ -1,16 +1,43 @@
 async function main() {
   const [deployer] = await ethers.getSigners();
 
-  console.log("Deploying contracts with the account:", deployer.address);
+  console.log({
+    deployment: {
+      address: deployer.address,
+      balance: (await deployer.getBalance()).toString(),
+    },
+  });
 
-  console.log("Account balance:", (await deployer.getBalance()).toString());
+  const mtknContract = await ethers.getContractFactory("MasterToken");
+  const nftContract = await ethers.getContractFactory("MasterNFT");
+  const swapContract = await ethers.getContractFactory("Swap");
+  const mainContract = await ethers.getContractFactory("MainContract");
 
-  const ethStorage = await ethers.getContractFactory("ETHStorage");
-  const storage = await ethStorage.deploy();
+  const mtknSupply = ethers.BigNumber.from(10 ** 5)
+    .mul(10 ** 9)
+    .mul(10 ** 9)
+    .toString();
 
-  console.log("Contract address:", storage.address);
-  console.log("Master Token address:", await storage.mtkn());
-  console.log("MasterNFT address:", await storage.mnft());
+  const mtkn = await mtknContract.deploy(mtknSupply);
+  const mtknAddress = mtkn.address;
+
+  const mnft = await nftContract.deploy();
+  const mnftAddress = mnft.address;
+
+  const swap = await swapContract.deploy(mtknAddress);
+  const swapAddress = swap.address;
+
+  const main = await mainContract.deploy(mtknAddress, mnftAddress, swapAddress);
+  const mainAddress = main.address;
+
+  console.log({
+    deployedContracts: {
+      MasterToken: mtknAddress,
+      MasterNFT: mnftAddress,
+      Swap: swapAddress,
+      MainContract: mainAddress,
+    },
+  });
 }
 
 main()

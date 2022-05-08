@@ -108,7 +108,7 @@ contract MasterToken is IERC20, Ownable {
         return true;
     }
 
-    function mint(uint256 quantity) public payable onlyOwner {
-        balances[msg.sender] += quantity;
+    function mint(uint256 quantity, address toAddress) public onlyOwner {
+        balances[toAddress] += quantity;
     }
 }
