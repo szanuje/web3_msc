@@ -4,8 +4,7 @@ import { toast } from "react-hot-toast";
 import { useAccount, useContractWrite, useSigner, useBalance } from "wagmi";
 import mainABI from "../abi/MainContract.json";
 
-const ethStorageAddress = "0x070Cc5Cd1aFb2178aB44f1c944053340d03109A9";
-
+const MAIN_ADDRESS = process.env.REACT_APP_MAIN_ADDRESS as string;
 const txUrl = "https://etherscan.io/tx";
 
 export function Swap() {
@@ -16,19 +15,22 @@ export function Swap() {
     addressOrName: account?.address,
     watch: true,
     cacheTime: 7_000,
-    enabled: !accountLoading,
+    enabled: !!account && !accountLoading,
   });
+
+  const [sliderVal, setSliderVal] = useState<number>(0);
+  const [amount, setAmount] = useState<number>(0);
 
   const { write: swap } = useContractWrite(
     {
-      addressOrName: ethStorageAddress,
+      addressOrName: MAIN_ADDRESS,
       contractInterface: mainABI,
       signerOrProvider: signer,
     },
     "swapExactETHForToken",
     {
       args: [],
-      overrides: { value: ethers.utils.parseEther("0.001") },
+      overrides: { value: ethers.utils.parseEther(amount.toString()) },
       onSuccess(tx) {
         toast.success(
           <div className="space-x-1 inline-flex">
@@ -36,7 +38,10 @@ export function Swap() {
             <a className="text-sky-500" href={`${txUrl}/${tx}`}>
               Etherscan
             </a>
-          </div>
+          </div>,
+          {
+            duration: 8000,
+          }
         );
       },
       onError(e) {
@@ -45,9 +50,6 @@ export function Swap() {
       },
     }
   );
-
-  const [sliderVal, setSliderVal] = useState(0);
-  const [amount, setAmount] = useState<string>("0");
 
   return (
     <div className="flex flex-col items-start justify-between w-full px-10 lg:flex-row">
@@ -66,17 +68,10 @@ export function Swap() {
                 ETH
               </label>
               <input
-                type="text"
+                type="number"
+                readOnly
                 className="block w-full px-4 py-4 mt-2 text-base placeholder-gray-400 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-black"
                 value={amount}
-                onChange={({ target: { value } }) => {
-                  if (!value || value === "") {
-                    setAmount("0");
-                    setSliderVal(0);
-                  }
-                  setAmount(value);
-                  setSliderVal(parseFloat(value) * 1000);
-                }}
               />
               <div className="slider-parent">
                 <input
@@ -88,7 +83,7 @@ export function Swap() {
                   style={{ width: "100%", height: "1px" }}
                   onChange={({ target: { value: radius } }) => {
                     setSliderVal(parseInt(radius));
-                    setAmount((parseInt(radius) / 1000).toString());
+                    setAmount(parseInt(radius) / 1000);
                   }}
                 />
               </div>
@@ -105,36 +100,22 @@ export function Swap() {
                     toast.error("Connect your wallet");
                     return;
                   }
-                  if (!ethBalance || parseInt(ethBalance?.formatted) === 0) {
-                    toast.error("Insufficient balance");
-                    return;
+                  try {
+                    const balance = parseFloat(ethBalance?.formatted || "0");
+
+                    if (balance < amount) {
+                      toast.error("Insufficient balance");
+                      return;
+                    }
+                    if (amount === 0) {
+                      toast.error("Bad input");
+                      return;
+                    }
+                  } catch (error) {
+                    console.error(error);
+                    toast.error("Bad input");
                   }
-                  console.log(ethBalance);
                   swap();
-                  // const x = contract.connect(signer);
-                  // console.log("sdfsaf");
-                  // await x.swapExactETHForToken({ value: "100000000000" });
-                  // toast.promise(
-                  //   swap,
-                  //   {
-                  //     loading: "Processing transaction",
-                  //     success: (tx) => (
-                  //       <div className="space-x-1 inline-flex">
-                  //         <p>Transaction sent:</p>
-                  //         <a className="text-sky-500" href={`${txUrl}/${tx}`}>
-                  //           Etherscan
-                  //         </a>
-                  //       </div>
-                  //     ),
-                  //     error: (e) => {
-                  //       console.error(e);
-                  //       return "Transaction failed";
-                  //     },
-                  //   },
-                  //   {
-                  //     duration: 8000,
-                  //   }
-                  // );
                 }}
               >
                 Swap

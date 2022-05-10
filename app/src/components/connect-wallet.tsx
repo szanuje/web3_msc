@@ -1,10 +1,16 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { useAccount, useConnect, useDisconnect, useBalance } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useBalance,
+  chain,
+} from "wagmi";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
-const mtknAddress = "0x4646CB39EA04d4763BED770F80F0e0dE8efcdF0f";
+const MTKN_ADDRESS = process.env.REACT_APP_MTKN_ADDRESS as string;
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -13,23 +19,23 @@ function classNames(...classes: string[]) {
 export function ConnectWallet() {
   const { data: account, isLoading: accountLoading } = useAccount();
   const { connect, isConnecting } = useConnect({
-    connector: new InjectedConnector(),
+    connector: new MetaMaskConnector({ chains: [chain.rinkeby] }),
   });
   const { disconnect } = useDisconnect();
 
   const { data: mtknBalance } = useBalance({
     addressOrName: account?.address,
-    token: mtknAddress,
+    token: MTKN_ADDRESS,
     watch: true,
     cacheTime: 7_000,
-    enabled: !accountLoading,
+    enabled: !!account && !accountLoading,
   });
 
   const { data: ethBalance } = useBalance({
     addressOrName: account?.address,
     watch: true,
     cacheTime: 7_000,
-    enabled: !accountLoading,
+    enabled: !!account && !accountLoading,
   });
 
   if (account)

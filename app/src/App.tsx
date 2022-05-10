@@ -5,7 +5,9 @@ import { Toaster } from "react-hot-toast";
 import { Provider, createClient } from "wagmi";
 import { useState } from "react";
 
-const client = createClient();
+const client = createClient({
+  autoConnect: true,
+});
 
 function App() {
   const [choice, setChoice] = useState();
