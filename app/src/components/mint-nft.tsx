@@ -10,6 +10,7 @@ import {
 } from "wagmi";
 import mainABI from "../abi/MainContract.json";
 import mtknABI from "../abi/MasterToken.json";
+import { NFTLink } from "./nft-link";
 
 const MAIN_ADDRESS = process.env.REACT_APP_MAIN_ADDRESS as string;
 const MTKN_ADDRESS = process.env.REACT_APP_MTKN_ADDRESS as string;
@@ -25,7 +26,7 @@ export function MintNft() {
     token: MTKN_ADDRESS,
     watch: true,
     cacheTime: 7_000,
-    enabled: !!account && !accountLoading,
+    enabled: account && !accountLoading,
   });
 
   const { data: allowance } = useContractRead(
@@ -102,7 +103,7 @@ export function MintNft() {
   );
 
   return (
-    <div className="flex flex-col items-start justify-between w-full px-10 lg:flex-row">
+    <div className="flex flex-col items-start justify-between w-full px-10 lg:flex-row inline-table space-y-3">
       <div className="relative z-10 w-full max-w-3xl mt-20 lg:mt-0">
         <div className="relative z-10 flex flex-col items-start justify-start p-10 bg-white shadow-2xl rounded-xl">
           <h4 className="w-full text-xl font-medium leading-snug">Mint NFT</h4>
@@ -155,6 +156,7 @@ export function MintNft() {
           </div>
         </div>
       </div>
+      {account?.address && <NFTLink address={account.address} />}
     </div>
   );
 }

@@ -15,7 +15,7 @@ export function Swap() {
     addressOrName: account?.address,
     watch: true,
     cacheTime: 7_000,
-    enabled: !!account && !accountLoading,
+    enabled: account && !accountLoading,
   });
 
   const [sliderVal, setSliderVal] = useState<number>(0);
@@ -61,7 +61,8 @@ export function Swap() {
           <div className="relative w-full mt-6 space-y-8">
             <div className="relative w-full">
               <div className="absolute right-2 top-3 inline-block px-2 py-2 text-xl text-xs font-medium text-center transition duration-200 bg-gray-200 rounded-lg hover:bg-gray-300 ease">
-                {ethBalance ? parseFloat(ethBalance.formatted).toFixed(4) : 0}
+                {ethBalance ? parseFloat(ethBalance.formatted).toFixed(4) : 0}{" "}
+                ETH
               </div>
 
               <label className="absolute px-2 ml-2 -mt-3 font-medium text-gray-600 bg-white">
@@ -85,6 +86,11 @@ export function Swap() {
                     setSliderVal(parseInt(radius));
                     setAmount(parseInt(radius) / 1000);
                   }}
+                  onClick={() =>
+                    !ethBalance ||
+                    (parseFloat(ethBalance.formatted) === 0 &&
+                      toast.error("You need to have at least some ether"))
+                  }
                 />
               </div>
               <p className="mt-2 font-medium text-gray-600 bg-white">

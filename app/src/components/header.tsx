@@ -13,17 +13,17 @@ export function Header({ choice }: Props) {
         >
           <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-1 w-full">
             <div className="text-left flex items-center text-xl">
-              Web3 Application
+              <a href="/">{home}</a>
             </div>
-            <div className="w-full flex items-center grid-cols-2">
+            <div className="w-full flex items-center grid-cols-2 space-x-1">
               <button
-                className="justify-center w-full relative inline-flex items-center  border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg"
+                className="justify-center w-full relative inline-flex items-center  border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200"
                 onClick={() => choice("swap")}
               >
                 Swap
               </button>
               <button
-                className="justify-center w-full relative inline-flex items-center  border-b-2  border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg"
+                className="justify-center w-full relative inline-flex items-center  border-b-2  border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200"
                 onClick={() => choice("mint")}
               >
                 Mint
@@ -38,3 +38,20 @@ export function Header({ choice }: Props) {
     </nav>
   );
 }
+
+const home = (
+  <svg
+    className="w-7 h-7"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+    ></path>
+  </svg>
+);
