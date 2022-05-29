@@ -1,59 +1,49 @@
-# web3_msc project
+# Web3 Application
 
-This project consists of a web3 application that interact with smart contracts.
+### This project is a web3 application that interact with [Smart Contracts](https://ethereum.org/en/developers/docs/smart-contracts/).
+
+I let user swap token using [Uniswap](https://uniswap.org/) exchange [pool](https://docs.uniswap.org/protocol/V2/concepts/core-concepts/pools) and use it to mint [NFT](https://en.wikipedia.org/wiki/Non-fungible_token) token.
 
 ## web3-app
 
-This is a client application that interacts with deployed smart contracts.
+This is a client application that interacts with deployed Smart Contracts.
 
 ### Tech stack
 
-- next.js
-- react.js
-- tailwind css
-- ethers.js
+- [React.js](https://reactjs.org/) - Library for building user interfaces
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [WAGMI](https://wagmi.sh/) - React hooks to interact with wallets and smart contracts. Built on top of [Ethers.js](https://docs.ethers.io/v5/)
 
 ### Functionalities
 
-- deposit Ether into the contract
-- convert Ether to a new token
-- mint an NFT token
+- Swap ether to dedicated token using Uniswap created pool
+- Mint NFT token
 
-### How to use
+### Development
 
-- `npm run dev`
+- `npm run start`
 
 ## eth
 
-This directory contains code for smart contracts to interact with.
+This directory contains Smart Contracts implementations and deployment scripts.
 
 ### Tech stack
 
-- solidity
-- hardhat
+- [Solidity](https://docs.soliditylang.org/en/v0.8.14/)
+- [Hardhat](https://hardhat.org/)
 
 ### Functionalities
 
 - ERC20 token contract
 - ERC721 token contract
-- Contract that uses the above and provides additional functionalities  
-  -- Deposit Ether  
-  -- Convert Ether into ERC20 Token  
-  -- Mint an NFT for that token
+- Contract that uses the above and provides additional functionalities
+  - Swap ether to dedicated token
+  - Mint an NFT for that token
 
-### How to use
+### Development
 
 - compile: `npm run compile`
 - deploy: `npm run deploy-[local|rinkeby]`
 - verify: `npx hardhat verify --network rinkeby $ADDRESS`
 
-### Contracts deployed to Ethereum Rinkeby network
-
-- ETHStorage: `0xCfCFA75475f2462D28dB2964Db8ac2F375230038`  
-  [https://rinkeby.etherscan.io/address/0xCfCFA75475f2462D28dB2964Db8ac2F375230038](https://rinkeby.etherscan.io/address/0xCfCFA75475f2462D28dB2964Db8ac2F375230038)
-- Master Token (MTKN): `0xf17E09B60f278933f498c03a7B3fdFA0eB4C0FDb`  
-  [https://rinkeby.etherscan.io/address/0xf17e09b60f278933f498c03a7b3fdfa0eb4c0fdb](https://rinkeby.etherscan.io/address/0xf17e09b60f278933f498c03a7b3fdfa0eb4c0fdb)
-- MasterNFT (MNFT): `0x6ae3afeeDc48AA7dC2Cb0C6e1Ab6E15c2fb779d1`  
-  https://rinkeby.etherscan.io/address/0x6ae3afeedc48aa7dc2cb0c6e1ab6e15c2fb779d1
-- Price oracle (ETH/USD): `0x52E94964AD2A41db15EBfd4BE8C5b51d1E83B4CB`  
-  [https://rinkeby.etherscan.io/address/0x52e94964ad2a41db15ebfd4be8c5b51d1e83b4cb](https://rinkeby.etherscan.io/address/0x52e94964ad2a41db15ebfd4be8c5b51d1e83b4cb)
+### Already deployed contracts' addresses are available in `app` directory in `.env` file.
