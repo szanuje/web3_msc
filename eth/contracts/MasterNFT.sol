@@ -3,7 +3,6 @@ pragma solidity ^0.8.10;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract MasterNFT is ERC721URIStorage, Ownable {
@@ -14,7 +13,6 @@ contract MasterNFT is ERC721URIStorage, Ownable {
 
     function mintNFT(address recipient, string memory tokenURI)
         public
-        onlyOwner
         returns (uint256)
     {
         _tokenIds.increment();
