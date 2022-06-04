@@ -94,7 +94,7 @@ export function Swap() {
                 />
               </div>
               <p className="mt-2 font-medium text-gray-600 bg-white">
-                Receive amount: 69.420
+                Receive amount:
               </p>
             </div>
 

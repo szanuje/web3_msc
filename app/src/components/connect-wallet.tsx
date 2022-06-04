@@ -43,7 +43,7 @@ export function ConnectWallet() {
       {account && (
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+            <Menu.Button className="justify-center w-full relative inline-flex items-center border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200">
               {formatAddress(account?.address)}
               <ChevronDownIcon
                 className="-mr-1 ml-2 h-5 w-5"
@@ -104,7 +104,7 @@ export function ConnectWallet() {
       {isConnecting && (
         <button
           disabled
-          className=" space-x-1 relative -ml-px inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          className="justify-center relative inline-flex items-center border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 rounded-lg space-x-1"
         >
           <LoadingSpinner className="w-5 h-5" />
           <span>Connecting...</span>
@@ -113,7 +113,7 @@ export function ConnectWallet() {
       {!account && !isConnecting && (
         <button
           onClick={() => connect(connectors[0])}
-          className="relative -ml-px inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          className="justify-center relative inline-flex items-center border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200"
         >
           Connect Wallet
         </button>

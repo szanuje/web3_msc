@@ -13,17 +13,22 @@ export function Header({ choice }: Props) {
         >
           <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-1 w-full">
             <div className="text-left flex items-center text-xl">
-              <a href="/">{home}</a>
+              <a
+                href="/"
+                className=" transition ease-in-out hover:scale-[1.05] duration-200"
+              >
+                {home}
+              </a>
             </div>
             <div className="w-full flex items-center grid-cols-2 space-x-1">
               <button
-                className="justify-center w-full relative inline-flex items-center  border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200"
+                className="justify-center w-full relative inline-flex items-center border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200"
                 onClick={() => choice("swap")}
               >
                 Swap
               </button>
               <button
-                className="justify-center w-full relative inline-flex items-center  border-b-2  border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200"
+                className="justify-center w-full relative inline-flex items-center border-b-2 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition ease-in-out hover:scale-[1.05] duration-200"
                 onClick={() => choice("mint")}
               >
                 Mint
