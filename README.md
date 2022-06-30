@@ -66,6 +66,9 @@ This directory contains Smart Contracts implementations and deployment scripts.
 
 - compile: `npm run compile`
 - deploy: `npm run deploy-[local|rinkeby]`
-- verify: `npx hardhat verify --network rinkeby $ADDRESS`
+
+  Before verify step you need to include contract addresses in `arguments.js` file.
+
+- verify: `npx hardhat verify --network rinkeby --constructor-args arguments.js <address>`
 
 ### Already deployed contracts' addresses are available in `app` directory in public `.env` file.
