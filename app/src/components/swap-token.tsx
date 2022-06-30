@@ -35,7 +35,12 @@ export function Swap() {
         toast.success(
           <div className="space-x-1 inline-flex">
             <p>Transaction sent:</p>
-            <a className="text-sky-500" href={`${txUrl}/${tx}`}>
+            <a
+              className="text-sky-500"
+              rel="noopener noreferrer"
+              target="_blank"
+              href={`${txUrl}/${tx.hash}`}
+            >
               Etherscan
             </a>
           </div>,

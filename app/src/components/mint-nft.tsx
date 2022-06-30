@@ -55,7 +55,12 @@ export function MintNft() {
         toast.success(
           <div className="space-x-1 inline-flex">
             <p>Transaction sent:</p>
-            <a className="text-sky-500" href={`${txUrl}/${tx}`}>
+            <a
+              className="text-sky-500"
+              rel="noopener noreferrer"
+              target="_blank"
+              href={`${txUrl}/${tx.hash}`}
+            >
               Etherscan
             </a>
           </div>,
@@ -86,7 +91,12 @@ export function MintNft() {
         toast.loading(
           <div className="space-x-1 inline-flex">
             <p>Transaction sent:</p>
-            <a className="text-sky-500" href={`${txUrl}/${tx}`}>
+            <a
+              className="text-sky-500"
+              rel="noopener noreferrer"
+              target="_blank"
+              href={`${txUrl}/${tx.hash}`}
+            >
               Etherscan
             </a>
           </div>,
@@ -139,8 +149,6 @@ export function MintNft() {
                   const allow = (allowance || ethers.BigNumber.from(0)).gte(
                     ethers.BigNumber.from(1000)
                   );
-                  console.log(allow);
-                  console.log(allowance);
                   if (!allow) {
                     toast.success("You must allow your MTKN to be spend");
                     approve();
