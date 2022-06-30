@@ -5,7 +5,7 @@ import { useAccount, useContractWrite, useSigner, useBalance } from "wagmi";
 import mainABI from "../abi/MainContract.json";
 
 const MAIN_ADDRESS = process.env.REACT_APP_MAIN_ADDRESS as string;
-const txUrl = "https://etherscan.io/tx";
+const txUrl = "https://rinkeby.etherscan.io/tx";
 
 export function Swap() {
   const { data: signer } = useSigner();

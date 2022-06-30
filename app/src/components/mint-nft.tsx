@@ -15,7 +15,7 @@ import { NFTLink } from "./nft-link";
 const MAIN_ADDRESS = process.env.REACT_APP_MAIN_ADDRESS as string;
 const MTKN_ADDRESS = process.env.REACT_APP_MTKN_ADDRESS as string;
 
-const txUrl = "https://etherscan.io/tx";
+const txUrl = "https://rinkeby.etherscan.io/tx";
 
 export function MintNft() {
   const { data: signer } = useSigner();
