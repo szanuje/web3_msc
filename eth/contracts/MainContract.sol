@@ -25,6 +25,7 @@ contract MainContract {
 
     function swapExactETHForToken() public payable {
         uint256 amountOut = swapper.swapExactInputSingle{value: msg.value}();
+        mtkn.transfer(msg.sender, amountOut);
         emit Swapped(msg.value, amountOut);
     }
 
